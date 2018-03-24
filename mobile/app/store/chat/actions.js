@@ -4,7 +4,7 @@ import * as types from './actionTypes'
 // const FIREBASE_REF_MESSAGES = firebaseService.database().ref('Messages')
 // const FIREBASE_REF_MESSAGES_LIMIT = 20
 
-export const sendMessage = (message, userId) => {
+export const sendMessage = (message, userId, messages) => {
   return (dispatch) => {
     dispatch(chatMessageLoading());
     
@@ -33,7 +33,6 @@ export const sendMessage = (message, userId) => {
     }).then((response) => {
       return response.json();
     }).then((json) => {
-      console.warn(json[0]);
       dispatch(chatMessageSuccess());
       dispatch(loadMessagesSuccess(json));
     });
