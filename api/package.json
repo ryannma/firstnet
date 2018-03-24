@@ -64,8 +64,7 @@
     "nodemon": "^1.17.2",
     "objection": "^1.0.1",
     "pug": "^2.0.0-rc.1",
-    "request": "^2.85.0",
-    "request-promise": "^4.2.2",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "watson-developer-cloud": "^3.2.1"
   }
 }
