@@ -13,8 +13,17 @@ import {
   Input,
 } from 'react-native-elements';
 import ActionButton from 'react-native-action-button';
+import { sendMessage } from '../../store/chat';
+import { connect } from 'react-redux';
 
-export default class Home extends Component<Props> {
+class Home extends Component<Props> {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      textInput: null
+    };
+  }
 
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
@@ -67,6 +76,10 @@ export default class Home extends Component<Props> {
             placeholder="What would you like to report?"
             multiline={true}
             underlineColorAndroid='transparent'
+            onChangeText={(text) => {
+              this.setState({textInput: text}
+            )}}
+            value={this.state.textInput}
           />
           
           <View style={styles.buttonBar}>
@@ -105,13 +118,25 @@ export default class Home extends Component<Props> {
           backgroundColor: '#06A77D',
           width: 250,
         }}
-        onPress={() => this.props.navigation.navigate('ChatScreen')}
+        onPress={() => {
+          this.props.sendMessage(this.state.textInput, this.props.userId);
+          this.setState({textInput: ''});
+          this.props.navigation.navigate('ChatScreen');
+        }}
       />
       </View>   
     </View>
        
     );
   }
+}
+
+const mapStateToProps = state => ({
+  userId: state.userId
+})
+
+const mapDispatchToProps = {
+  sendMessage
 }
 
 const styles = StyleSheet.create({
@@ -170,4 +195,6 @@ const styles = StyleSheet.create({
     height: 22,
     color: 'white'
   }
-})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
