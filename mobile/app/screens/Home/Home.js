@@ -13,7 +13,6 @@ import {
   Input,
 } from 'react-native-elements';
 import ActionButton from 'react-native-action-button';
-import { StackNavigator } from 'react-navigation';
 
 export default class Home extends Component<Props> {
 
@@ -39,8 +38,7 @@ export default class Home extends Component<Props> {
           containerStyle={{
             padding: 15
           }}
-          onPress={() => params.navigate('')}
-          /*underlayColor='#2986d8'*/
+          onPress={() => params.navigate('ChatScreen')}
         />
       )
     } 
@@ -102,6 +100,7 @@ export default class Home extends Component<Props> {
           backgroundColor: '#06A77D',
           width: 250,
         }}
+        onPress={() => this.props.navigation.navigate('ChatScreen')}
       />
       </View>   
     </View>
