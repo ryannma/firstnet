@@ -5,11 +5,13 @@ import { Animated, Easing } from 'react-native';
 
 import Home from '../Home/Home';
 import ChatScreenContainer from '../ChatScreen/Container';
+import ContactContainer from '../Contact/Container';
 
 const RootStack = StackNavigator(
   {
     Home: { screen: Home },
     ChatScreen: {screen: ChatScreenContainer},
+    Contact: {screen: ContactContainer}
   },
   {
     initialRouteName: 'Home',
