@@ -75,6 +75,7 @@ export const sendMessage = message => {
       return response.json();
     }).then((json) => {
       dispatch(chatMessageSuccess());
+      dispatch(loadMessagesSuccess(json));
     });
   }
 }
