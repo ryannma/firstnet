@@ -6,4 +6,6 @@ router.get('/hi', (req, res) => {
   });
 });
 
+router.use('/message', require('@routes/message/message'));
+
 module.exports = router;
