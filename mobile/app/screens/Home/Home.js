@@ -4,7 +4,8 @@ import {
   StyleSheet,
   StatusBar,
   Dimensions,
-  Text
+  Text,
+  TextInput
 } from 'react-native';
 import {
   Button,
@@ -19,7 +20,7 @@ export default class Home extends Component<Props> {
     const params = navigation.state.params || {};
 
     return {
-      title: 'CitySense',
+      /*title: 'CitiSense',*/
       headerLeft: (
         <Icon
           name='menu'
@@ -27,6 +28,7 @@ export default class Home extends Component<Props> {
           containerStyle={{
             padding: 15
           }}
+          onPress={() => this.props.navigation.navigate()}
         />
       ),
       headerRight: (
@@ -37,10 +39,9 @@ export default class Home extends Component<Props> {
             padding: 15
           }}
           onPress={() => params.navigate('ChatScreen')}
-          underlayColor='#2986d8'
         />
       )
-    }
+    } 
   };
 
   componentWillMount() {
@@ -51,21 +52,59 @@ export default class Home extends Component<Props> {
 
   render () {
     return (
-      <View style={styles.homeContainer}>
-        <StatusBar/>
-        <View style={styles.list}>
-        </View>
-        <Input placeholder='What would you like to report?'/>
-        <Button title='Camera'/>
-        <Button title='Voice'/>
-        <Button title='Submit'
-                onPress={() => this.props.navigation.navigate('ChatScreen')}/>
-        <ActionButton
-          buttonColor='rgba(231,76,60,1)'
-          fixNativeFeedbackRadius={true}
-          onPress={() => this.props.navigation.navigate()}
-        />
+    <View style={styles.homeContainer}>
+    <StatusBar/>
+      <Text style={styles.homeLogo}>Citi<Text style={{color: '#06A77D'}}>Sense</Text></Text>
+      
+      <View style={{alignItems: 'flex-end', paddingRight: 100}}>
+        <View style={styles.triangleUp} />
       </View>
+
+      <View style={{flex: 2, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'stretch'}}>
+        <View style={styles.roundedBox}>
+          <TextInput
+            style={styles.textReport}
+            placeholder="What would you like to report?"
+            multiline={true}
+            underlineColorAndroid='transparent'
+          />
+          
+          <View style={styles.buttonBar}>
+            <Icon
+              type='entypo'
+              name='camera'
+              color='gray'
+              />
+            <Icon
+              type='entypo'
+              name='video-camera'
+              color='gray'
+              />
+            <Icon
+              name='mic'
+              color='gray'
+              />
+            <Icon
+              name='location-on'
+              color='gray'
+              />
+          </View>
+        </View>
+      </View> 
+
+      <View style={{flex: 1}}> 
+      <Button 
+        title="Submit Report"
+        titleStyle={{fontSize:20}}
+        buttonStyle={{
+          backgroundColor: '#06A77D',
+          width: 250,
+        }}
+        onPress={() => this.props.navigation.navigate('ChatScreen')}
+      />
+      </View>   
+    </View>
+       
     );
   }
 }
@@ -75,11 +114,51 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height
+    height: Dimensions.get('window').height,
+    backgroundColor: '#002F68'
   },
   header: {
     height: 55
+  },  
+  homeLogo: {
+    fontSize: 60, 
+    textAlign: 'center', 
+    padding: 30, 
+    color:'#fff',
   },
+  triangleUp: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 25,
+    borderRightWidth: 25,
+    borderBottomWidth: 50,
+    borderStyle: 'solid',
+    backgroundColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: '#fff'
+  },
+  roundedBox: {
+    flex: 1, 
+    flexDirection: 'column', 
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    marginHorizontal: 20,
+    marginBottom: 20, 
+  },
+  textReport: {
+    flex: 2,
+    fontSize: 20,
+    padding: 20,
+    textAlignVertical: 'top'
+  },  
+  buttonBar: {
+    flex: 1, 
+    flexDirection:'row', 
+    justifyContent: 'space-between',
+    marginHorizontal: 20,
+  },
+
   actionButtonIcon: {
     fontSize: 20,
     height: 22,
