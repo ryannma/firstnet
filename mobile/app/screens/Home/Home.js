@@ -37,7 +37,7 @@ export default class Home extends Component<Props> {
           containerStyle={{
             padding: 15
           }}
-          onPress={() => params.navigate('')}
+          onPress={() => params.navigate('ChatScreen')}
           underlayColor='#2986d8'
         />
       )
@@ -59,7 +59,8 @@ export default class Home extends Component<Props> {
         <Input placeholder='What would you like to report?'/>
         <Button title="Camera"/>
         <Button title="Voice"/>
-        <Button title="Submit"/>
+        <Button title="Submit"
+                onPress={() => this.props.navigation.navigate('ChatScreen')}/>
         <ActionButton
           buttonColor="rgba(231,76,60,1)"
           fixNativeFeedbackRadius={true}
