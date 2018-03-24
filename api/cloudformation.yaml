@@ -72,6 +72,14 @@ Resources:
             RestApiId: !Ref ApiGatewayApi
             Path: /{proxy+}
             Method: ANY
+  ConfigLambdaPermission:
+    Type: "AWS::Lambda::Permission"
+    DependsOn:
+    - FirstNetHackathonAPI
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref FirstNetHackathonAPI
+      Principal: apigateway.amazonaws.com
 
 Outputs:
   LambdaFunctionConsoleUrl:
@@ -107,3 +115,4 @@ Outputs:
         - ".execute-api."
         - !Ref AWS::Region
         - ".amazonaws.com/prod/"
+  

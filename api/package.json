@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "node app.local.js",
+    "start:dev": "./node_modules/nodemon/bin/nodemon.js --inspect=0.0.0.0:9229 app/app.js",
     "config": "node ./scripts/configure.js",
     "deconfig": "node ./scripts/deconfigure.js",
     "local": "node scripts/local",
@@ -35,13 +36,36 @@
     "win-delete-stack": "aws cloudformation delete-stack --stack-name %npm_package_config_cloudFormationStackName% --region %npm_package_config_region%",
     "win-setup": "npm install && (aws s3api get-bucket-location --bucket %npm_package_config_s3BucketName% --region %npm_package_config_region% || npm run win-create-bucket) && npm run win-package-deploy"
   },
+  "_moduleAliases": {
+    "@db": "app/db",
+    "@routes": "app/routes",
+    "@server": "app/server/server",
+    "@lib": "app/lib",
+    "@conf": "app/conf",
+    "@schema": "app/schema"
+  },
   "license": "Apache-2.0",
   "dependencies": {
     "aws-serverless-express": "^3.0.0",
-    "body-parser": "^1.17.1",
+    "body-parser": "^1.18.2",
+    "colors": "^1.2.1",
     "compression": "^1.6.2",
     "cors": "^2.8.3",
-    "express": "^4.15.2",
-    "pug": "^2.0.0-rc.1"
+    "dotenv": "^5.0.1",
+    "errorhandler": "^1.5.0",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "fs": "0.0.1-security",
+    "jasmine": "^3.1.0",
+    "jest": "^22.4.3",
+    "knex": "^0.14.4",
+    "module-alias": "^2.0.6",
+    "nock": "^9.2.3",
+    "nodemon": "^1.17.2",
+    "objection": "^1.0.1",
+    "pug": "^2.0.0-rc.1",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2",
+    "supertest": "^3.0.0"
   }
 }
