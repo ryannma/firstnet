@@ -44,9 +44,18 @@ Resources:
         ServerlessExpressLambdaFunctionName:
           Ref: FirstNetHackathonAPI
     Type: AWS::Serverless::Api
+  ConfigLambdaPermission:
+    DependsOn:
+    - FirstNetHackathonAPI
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: FirstNetHackathonAPI
+      Principal: apigateway.amazonaws.com
+    Type: AWS::Lambda::Permission
   FirstNetHackathonAPI:
     Properties:
-      CodeUri: s3://firstnet-hackathon/30a108d619e988544a108dc3d229f5be
+      CodeUri: s3://firstnet-hackathon/cb64a3a3371264d290d12d291e9580bb
       Events:
         ProxyApiGreedy:
           Properties:
