@@ -5,7 +5,8 @@ const initialState = {
   sendingError: null,
   message: '',
   messages: {},
-  loadMessagesError: null
+  loadMessagesError: null,
+  userId: Math.floor(Math.random() * 2147483647) + 1  
 }
 
 const chat = (state = initialState, action) => {

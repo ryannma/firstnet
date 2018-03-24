@@ -10,7 +10,7 @@ import MessageListComponent from './Component'
 class MessagesListContainer extends Component {
 
   componentDidMount() {
-    this.props.loadMessages()
+    this.props.loadMessages(this.props.userId);
   }
 
   render() {
@@ -24,7 +24,8 @@ class MessagesListContainer extends Component {
 
 const mapStateToProps = state => ({
   messages: state.messages,
-  error: state.loadMessagesError
+  error: state.loadMessagesError,
+  userId: state.userId
 })
 
 const mapDispatchToProps = {

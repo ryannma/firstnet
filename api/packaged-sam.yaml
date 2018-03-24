@@ -55,7 +55,7 @@ Resources:
     Type: AWS::Lambda::Permission
   FirstNetHackathonAPI:
     Properties:
-      CodeUri: s3://firstnet-hackathon/6da23a694078805bcfc10f4fef8fc01e
+      CodeUri: s3://firstnet-hackathon/35fcfe026cffa6c1e2d22eb4584c0bbd
       Events:
         ProxyApiGreedy:
           Properties:

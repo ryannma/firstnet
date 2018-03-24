@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { talk, processResponse } = require('@lib/watson');
 
-const queryGET = `SELECT * FROM message ORDER BY createdAt DESC LIMIT 20`;
 
 function formatTexts(texts) {
   return texts.map(row => {
@@ -21,6 +20,7 @@ router.post('/', (req, res) => {
 
   // Input contents (need format)
   const text = req.body.text;
+  const userId = req.body.userId;
   const context = req.body.context;
 
   const db = req.app.get('db');
@@ -32,15 +32,17 @@ router.post('/', (req, res) => {
 
       // Insert sent message
       const query = `INSERT INTO message (message, user_id, email, createdAt) 
-       VALUES ('${text}', 123, 'me@email.com', CURRENT_TIMESTAMP)`;
+       VALUES ('${text}', ${userId}, 'me@email.com', CURRENT_TIMESTAMP)`;
       db.execute(query,(err, results, fields) => {
 
         // Insert watson's response
-        const query2 = `INSERT INTO message (message, user_id, email, createdAt) 
-         VALUES ('${rv.message}', 42, 'Watson Responder', CURRENT_TIMESTAMP+1)`;
+        const query2 = `INSERT INTO message (message, user_id, email, createdAt, respond_id) 
+         VALUES ('${rv.message}', 42, 'Watson Responder', CURRENT_TIMESTAMP+1, ${userId})`;
         db.execute(query2, (err, results, fields) => {
 
           // After watson's response is inserted, get new list
+          const queryGET = `SELECT * FROM message WHERE user_id = ${userId} OR respond_id = ${userId}
+                            ORDER BY createdAt DESC LIMIT 20`;
           db.query(queryGET, (err, results, fields) => {
             const formattedResults = formatTexts(results);
             res.status(200);
@@ -62,6 +64,9 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
 
   const db = req.app.get('db');
+  const userId = req.query.userId;
+  const queryGET = `SELECT * FROM message WHERE user_id = ${userId} OR respond_id = ${userId}
+                    ORDER BY createdAt DESC LIMIT 20`;
   db.query(queryGET, (err, results, fields) => {
     const formattedResults = formatTexts(results);
     res.status(200);

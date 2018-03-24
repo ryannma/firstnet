@@ -12,12 +12,14 @@ const MessageFormContainer = props =>
     sendMessage={props.sendMessage}
     updateMessage={props.updateMessage}
     message={props.message}
-    sendingError={props.sendingError} />
+    sendingError={props.sendingError}
+    userId={props.userId} />
 
 const mapStateToProps = state => ({
   sending: state.sending,
   sendingError: state.sendingError,
-  message: state.message
+  message: state.message,
+  userId: state.userId
 })
 
 const mapDispatchToProps = {
