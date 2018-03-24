@@ -33,6 +33,7 @@ export const sendMessage = (message, userId) => {
     }).then((response) => {
       return response.json();
     }).then((json) => {
+      console.warn(json[0]);
       dispatch(chatMessageSuccess());
       dispatch(loadMessagesSuccess(json));
     });
