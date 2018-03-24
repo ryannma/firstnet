@@ -6,7 +6,7 @@ import MessageRow from './Component'
 class MessageRowContainer extends Component {
 
   render() {
-    const isCurrentUser = 'my@email.com' == this.props.message.user.email;
+    const isCurrentUser = 'me@email.com' == this.props.message.user.email;
     return (
       <MessageRow
         message={this.props.message}

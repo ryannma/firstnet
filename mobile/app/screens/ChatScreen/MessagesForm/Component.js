@@ -37,7 +37,7 @@ class MessageFormComponent extends Component {
 
         <TextInput
           style={styles.textInput}
-          placeholder={'Enter text here.'}
+          placeholder={'Enter your message here'}
           returnKeyType='send'
           onChangeText={this.handleMessageChange}
           value={this.props.message}

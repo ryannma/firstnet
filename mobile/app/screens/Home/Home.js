@@ -12,7 +12,6 @@ import {
   Input,
 } from 'react-native-elements';
 import ActionButton from 'react-native-action-button';
-import { StackNavigator } from 'react-navigation';
 
 export default class Home extends Component<Props> {
 
@@ -57,12 +56,12 @@ export default class Home extends Component<Props> {
         <View style={styles.list}>
         </View>
         <Input placeholder='What would you like to report?'/>
-        <Button title="Camera"/>
-        <Button title="Voice"/>
-        <Button title="Submit"
+        <Button title='Camera'/>
+        <Button title='Voice'/>
+        <Button title='Submit'
                 onPress={() => this.props.navigation.navigate('ChatScreen')}/>
         <ActionButton
-          buttonColor="rgba(231,76,60,1)"
+          buttonColor='rgba(231,76,60,1)'
           fixNativeFeedbackRadius={true}
           onPress={() => this.props.navigation.navigate()}
         />

@@ -38,7 +38,7 @@ export const sendMessage = message => {
       time: '2',
       createdAt: createdAt,
       user: {
-        id: currentUser.uid,
+        id: currentUser.id,
         email: currentUser.email
       }
     }
@@ -52,6 +52,21 @@ export const sendMessage = message => {
     // })
     messages.push(chatMessage);
     dispatch(chatMessageSuccess())
+    dispatch(loadMessages())
+
+    // Sending to API
+    fetch('https://hjt3tuayp1.execute-api.us-east-1.amazonaws.com/prod/message', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(chatMessage),
+    }).then((response) => {
+      return response.json();
+    }).then((json) => {
+      console.warn(json);
+    });
   }
 }
 
