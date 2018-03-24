@@ -5,6 +5,7 @@ import {
   Button,
   TouchableOpacity,
   Text,
+  Icon,
 } from 'react-native-elements';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import ActionButton from 'react-native-action-button';
@@ -17,12 +18,28 @@ class ChatScreenContainer extends Component {
     isModalVisible: false
   };
 
+  _toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+  };
+
 	static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
 
     return {
-      title: 'Watson Chat'
+      title: 'CitiSense Chat',
+      headerRight: (
+        <Button
+          title="EXIT CHAT"
+          titleStyle={{color: '#06A77D'}}
+          buttonStyle={{
+            backgroundColor: 'transparent'
+          }}
+          fixNativeFeedbackRadius={true}
+          onPress={() => this._toggleModal()}
+        />
+      )
     }
+
   };
 
   componentWillMount() {
@@ -31,14 +48,21 @@ class ChatScreenContainer extends Component {
     });
   };
 
-  _toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible });
-  };
+
   
   render() {
     return (
       <View>
+      <View style={{flex:1}}>
+        <Button
+        title="HELLO"
+        />
+        </View>
+      <View>
+
         <ChatScreen /> 
+        
+
         <ConfirmDialog
             title="Thank you!"
             message="Your conversation access code is: 09a3b4. Do you consent to being contacted for follow up questions?"
@@ -63,11 +87,15 @@ class ChatScreenContainer extends Component {
                 
             }}
         />
+
         <ActionButton
-            buttonColor='rgba(231,76,60,1)'
+            style={{position: 'absolute', bottom: 615}}
+            hideShadow={true}
+            buttonColor='transparent'
             fixNativeFeedbackRadius={true}
             onPress={() => this._toggleModal()}
           />
+      </View>
       </View>
     )
   }
