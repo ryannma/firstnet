@@ -74,19 +74,24 @@ export default class Home extends Component<Props> {
               type='entypo'
               name='camera'
               color='gray'
+              onPress={() => this.props.navigation.navigate()}
               />
+
             <Icon
               type='entypo'
               name='video-camera'
               color='gray'
+              onPress={() => this.props.navigation.navigate()}
               />
             <Icon
               name='mic'
               color='gray'
+              onPress={() => this.props.navigation.navigate()}
               />
             <Icon
               name='location-on'
               color='gray'
+              onPress={() => this.props.navigation.navigate()}
               />
           </View>
         </View>
@@ -125,6 +130,7 @@ const styles = StyleSheet.create({
     textAlign: 'center', 
     padding: 30, 
     color:'#fff',
+    fontWeight: 'bold'
   },
   triangleUp: {
     width: 0,

@@ -7,4 +7,6 @@ export default StyleSheet.create({
     height: '100%',
     backgroundColor: '#eeeeee'
   }
+
+
 })

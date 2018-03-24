@@ -11,13 +11,14 @@ const MessageRowComponent = props => {
   const isCurrentUser = props.isCurrentUser
   const alignItems = isCurrentUser ? 'flex-end' : 'flex-start'
   const margin = isCurrentUser ? {marginLeft: MESSAGE_TEXT_MARGIN} : {marginRight: MESSAGE_TEXT_MARGIN}
+  const backgroundColor = isCurrentUser ? {backgroundColor: '#06A77D'} : {backgroundColor: '#002F68'}
   const username = isCurrentUser ? 'You' : props.message.user.email
   const date = relativeDate(new Date(props.message.createdAt))
   return (
     <View
       style={styles.container}>
       <View
-        style={ [styles.bubbleView, {alignItems: alignItems}, margin] }>
+        style={ [styles.bubbleView, {alignItems: alignItems}, margin, backgroundColor] }>
         <Text
           style={styles.userText} >
           {date + ' - ' + username}
