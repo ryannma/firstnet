@@ -22,6 +22,18 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Setup database
+app.use((req, res, next) => {
+  const mysql = require('mysql2');
+  const connection = mysql.createConnection({
+    host: 'firstnethackathon.cfsyj9wzhife.us-east-1.rds.amazonaws.com',
+    user: 'root',
+    password: 'password',
+    database: 'master'
+  });
+  app.set('db', connection);
+  next();
+});
 
 // Routing Setup
 // -------------------------------------------------
