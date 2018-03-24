@@ -31,4 +31,14 @@ router.post('/', (req, res) => {
   });
 });
 
+router.get('/', (req, res) => {
+
+  const db = req.app.get('db');
+  const query = `SELECT * FROM message LIMIT 20`;
+  db.query(query, (err, results, fields) => {
+    res.status(200);
+    res.json(results);
+  });
+});
+
 module.exports = router;
