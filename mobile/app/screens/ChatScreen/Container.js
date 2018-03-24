@@ -65,7 +65,7 @@ class ChatScreenContainer extends Component {
 
         <ConfirmDialog
             title="Thank you!"
-            message="Your conversation access code is: 09a3b4. Do you consent to being contacted for follow up questions?"
+            message="Do you consent to being contacted for follow up questions?"
             visible={this.state.isModalVisible}
             onTouchOutside={() => this.setState({isModalVisible: false})}
             positiveButton={{
