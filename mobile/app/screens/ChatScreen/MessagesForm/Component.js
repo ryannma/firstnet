@@ -17,7 +17,7 @@ class MessageFormComponent extends Component {
     }
 
     this.handleButtonPress = () => {
-      this.props.sendMessage(this.props.message)
+      this.props.sendMessage(this.props.message, this.props.userId)
     }
   }
 

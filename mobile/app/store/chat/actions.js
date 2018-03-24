@@ -4,11 +4,12 @@ import * as types from './actionTypes'
 // const FIREBASE_REF_MESSAGES = firebaseService.database().ref('Messages')
 // const FIREBASE_REF_MESSAGES_LIMIT = 20
 
-export const sendMessage = message => {
+export const sendMessage = (message, userId) => {
   return (dispatch) => {
     dispatch(chatMessageLoading());
-
+    
     let chatMessage = {
+      userId: userId,
       text: message
     };
 
@@ -44,7 +45,7 @@ export const updateMessage = text => {
   }
 }
 
-export const loadMessages = () => {
+export const loadMessages = (userId) => {
 
   // Original API
   // return (dispatch) => {
@@ -55,7 +56,7 @@ export const loadMessages = () => {
   //   })
   // }
   return (dispatch) => {
-    fetch('https://hjt3tuayp1.execute-api.us-east-1.amazonaws.com/prod/message', {
+    fetch(`https://hjt3tuayp1.execute-api.us-east-1.amazonaws.com/prod/message?userId=${userId}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
