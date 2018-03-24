@@ -8,6 +8,14 @@ router.post('/', (req, res) => {
   const text = req.body.text;
   const context = req.body.context;
 
+  const db = req.app.get('db');
+  const query = `INSERT INTO message (message, user_id, email, createdAt) 
+     VALUES ('${text}', 123, 'me@email.com', CURRENT_TIMESTAMP)`;
+  db.execute( query,
+    (err, results, fields) => {
+    }
+  )
+
   // Talk to watson
   talk(text, context, (err, response) => {
     const rv = processResponse(err, response);
