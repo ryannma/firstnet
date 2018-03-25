@@ -7,7 +7,9 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-
+import {
+  Icon,
+} from 'react-native-elements';
 import {
   ThinGrayLine,
   ThickWhiteLine,
@@ -35,20 +37,23 @@ export default ({ onPress, incident }) => (
       style={{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        backgroundColor: '#5A4A9C',
+        backgroundColor: '#06A77D',
         height: 40,
         padding: 10,
       }}
     >
-      <Button title='Min.'
-              onPress={onPress} />
+      <Icon
+        type='feather'
+        name='minimize-2'
+
+        onPress={onPress} />
       <Text>Incident: {incident.incidentType}</Text>
     </View>
 
     <View style={styles.card}>
-      <View>
+      <View style={{justifyContent: 'flex-start', marginTop: 10}}>
        <Image
-          style={{width: 50, height: 50}}
+          style={{width: 50, height: 50, marginLeft: 10}}
           source={incident.imageSrc}
         />
       </View>
@@ -58,6 +63,7 @@ export default ({ onPress, incident }) => (
           justifyContent: 'space-between',
           padding: 10,
           paddingBottom: 0,
+          maxWidth: 260
         }}
       >
         <Text>{incident.detailedSummary}</Text>

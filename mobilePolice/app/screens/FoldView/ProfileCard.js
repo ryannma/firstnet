@@ -87,8 +87,8 @@ export default class Row extends Component {
             }}
             onPress={onPress}
           >
-            <Text>
-              ACCEPT
+            <Text style={{fontWeight:'bold', fontSize:20}}>
+              CHECK IT OUT
             </Text>
           </TouchableHighlight>
 
@@ -120,7 +120,7 @@ export default class Row extends Component {
           >
             <Text>Priority: {incident.priority}</Text>
             <Text>Location: {incident.location} </Text>
-
+            <Text>Distance: {incident.distance} ({incident.travelTime} away) </Text>
           </View>
 
           <View style={{ flex: 1 }}>
