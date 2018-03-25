@@ -8,4 +8,6 @@ router.get('/hi', (req, res) => {
 
 router.use('/message', require('@routes/message/message'));
 
+router.use('/sms', require('@routes/sms/sms'));
+
 module.exports = router;

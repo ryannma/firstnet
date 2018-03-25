@@ -50,7 +50,6 @@ router.post('/', (req, res) => {
   db.query(checkContext, (err, results, fields) => {
 
     context = results[0] && results[0].context ? JSON.parse(results[0].context) : null;
-    console.log(JSON.stringify(context));
     // Talk to watson
     talk(text, context, (err, response) => {
       const rv = processResponse(err, response);
