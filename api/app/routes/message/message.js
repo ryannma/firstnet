@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const { talk, processResponse } = require('@lib/watson');
-
+const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
+const natural_language_understanding = new NaturalLanguageUnderstandingV1({
+  'username': '54fa5c36-89f3-4745-8e5a-8c25528cc51d',
+  'password': 'MFeJKOIssG5n',
+  'version': '2018-03-16'
+});
 
 function formatTexts(texts) {
   return texts.map(row => {
@@ -22,6 +27,20 @@ router.post('/', (req, res) => {
   const text = req.body.text;
   const userId = req.body.userId;
   let context;
+  const parameters = {
+    features: {
+      entities: {
+        emotion: true,
+        sentiment: true,
+        limit: 2
+      },
+      keywords: {
+        emotion: true,
+        sentiment: true,
+        limit: 2
+      }
+    }
+  }
 
   const db = req.app.get('db');
   const checkContext = `SELECT * FROM message 
@@ -57,8 +76,18 @@ router.post('/', (req, res) => {
             console.log(queryGET);
             db.query(queryGET, (err, results, fields) => {
               const formattedResults = formatTexts(results);
-              res.status(200);
-              res.json(formattedResults);
+              console.log(formattedResults);
+
+              // Insert text analysis into db
+              parameters.text = text;
+              natural_language_understanding.analyze(parameters, (err, response) => {
+                const insertLanguage = `INSERT INTO natural_language (input, output, user_id)
+                                        VALUES ('${text}', '${JSON.stringify(response)}', ${userId})`;
+                db.execute(insertLanguage, (err, results, fields) => {
+                  res.status(200);
+                  res.json(formattedResults);
+                })
+              })
             });
           });
         })
