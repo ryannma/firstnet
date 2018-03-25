@@ -6,6 +6,10 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import {
+  Icon,
+  Button,
+} from 'react-native-elements';
 import PropTypes from 'prop-types';
 
 import Row from '../FoldView/Row';
@@ -16,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-    backgroundColor: '#4A637D',
+    backgroundColor: 'lightgray',
     flex: 1,
     padding: 10,
     paddingTop: 20,
@@ -25,6 +29,28 @@ const styles = StyleSheet.create({
 
 
 export default class Home extends Component<Props> {
+
+  static navigationOptions = {
+    title: 'Welcome',
+     headerLeft: (
+        <Icon
+          name='menu'
+          color='#fff'
+          containerStyle={{
+            padding: 10
+          }}
+        />
+      ),
+     headerRight: (
+        <Icon
+          name='history'
+          color='#fff'
+          containerStyle={{
+            padding: 10
+          }}
+        />
+      )
+  }
 
   render () {
     const incidents = getIncidents();
