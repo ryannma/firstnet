@@ -65,8 +65,8 @@ router.post('/', (req, res) => {
         db.execute(query,(err, results, fields) => {
 
           // Insert watson's response
-          const query2 = `INSERT INTO message (message, user_id, email, createdAt, respond_id, context) 
-           VALUES ('${rv.message}', 42, 'Watson Responder', CURRENT_TIMESTAMP+1, ${userId}, '${JSON.stringify(rv.context)}')`;
+          const query2 = `INSERT INTO message (message, user_id, email, createdAt, respond_id, context, raw) 
+           VALUES ('${rv.message}', 42, 'Watson Responder', CURRENT_TIMESTAMP+1, ${userId}, '${JSON.stringify(rv.context)}', '${JSON.stringify(rv.raw)}')`;
            console.log(query2);
           db.execute(query2, (err, results, fields) => {
 
