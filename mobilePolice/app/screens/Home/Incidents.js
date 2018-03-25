@@ -1,6 +1,6 @@
 const incident1 = {
 	id: '12345',
-	incidentType: 'Theft',
+	incidentType: 'Suspicious Behavior',
 	shortSummary: 'Man seen peering into car windows.',
 	detailedSummary: 'Middle-aged man in brown jacket last seen at 4:45PM peering into car windows. Black hair. About 6ft.',
 	location: '4th & Mission St.',
@@ -44,7 +44,7 @@ const incident4 = {
 	travelTime: '6 mins',
 	reportStatus: 'Officer Smith on scene.',
 	priority: 'High',
-	imageSrc: {'uri': 'http://tsoulosconstruction.gr/wp-content/uploads/2014/12/%CE%BA%CF%84%CE%B9%CF%81%CE%B9%CE%BF-1_%CE%A0%CE%B1%CF%8D%CE%BB%CE%BF%CF%85-%CE%9C%CE%B5%CE%BB%CE%AC-830x460.jpg'},
+	imageSrc: {'uri': 'https://s.hdnux.com/photos/47/76/51/10480254/7/920x1240.jpg'},
 }
 const incident5 = {
 	id: '19523',

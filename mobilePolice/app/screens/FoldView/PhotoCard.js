@@ -51,7 +51,7 @@ export default ({ onPress, incident }) => (
     </View>
 
     <View style={styles.card}>
-      <View style={{justifyContent: 'center'}}>
+      <View style={{justifyContent: 'flex-start', marginTop: 10}}>
        <Image
           style={{width: 50, height: 50, marginLeft: 10}}
           source={incident.imageSrc}

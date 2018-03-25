@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 export default class Home extends Component<Props> {
 
   static navigationOptions = {
-    title: 'Welcome',
+    title: 'CitiSense',
      headerLeft: (
         <Icon
           name='menu'

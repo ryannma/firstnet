@@ -51,9 +51,9 @@ export default ({ onPress, incident }) => (
     <View style={styles.leftPane}>
       <Text style={{fontWeight: 'bold'}}>ID: {incident.id}</Text>
       
-      <View style={{flex:2, justifyContent:'center'}}>
+      <View style={{flex:2, justifyContent:'center', alignItems:'center'}}>
       <Image
-         style={{width: 50, height: 50}}
+         style={{width: 90, height: 90, marginTop: 10}}
          source={incident.imageSrc}
        />
      </View>
